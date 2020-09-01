@@ -1,0 +1,5 @@
+fk_run:
+  - flutter pub run build_runner build --delete-conflicting-outputs
+
+fk_get:
+  - flutter pub get
