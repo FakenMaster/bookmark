@@ -3,3 +3,5 @@ fk_run:
 
 fk_get:
   - flutter pub get
+fk_runW:
+  - flutter pub run build_runner watch --delete-conflicting-outputs

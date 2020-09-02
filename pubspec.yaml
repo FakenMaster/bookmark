@@ -23,15 +23,18 @@ dependencies:
   html: ^0.14.0+3
   webview_flutter: ^0.3.22+1
   rxdart: ^0.24.1
+  injectable: ^1.0.4
+  dartz: ^0.9.1
+  kt_dart: ^0.7.0+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  injector: ^1.0.9
   json_serializable: ^3.4.1
   freezed: ^0.11.6
   build_runner: null
   auto_route_generator: ^0.6.8
+  injectable_generator: ^1.0.4
 
 dependency_overrides:
   meta: 1.2.2

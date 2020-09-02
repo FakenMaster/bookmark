@@ -7,6 +7,8 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bookmark/domain/bookmark/bookmark.dart';
+import 'package:bookmark/presentation/bookmark/bookmark_overview_page.dart';
 import 'package:bookmark/presentation/page/home_page.dart';
 import 'package:bookmark/presentation/page/webview_page.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +16,11 @@ import 'package:flutter/material.dart';
 class Routes {
   static const String homePage = '/';
   static const String webviewPage = '/webview-page';
+  static const String bookmarkOverviewPage = '/bookmark-overview-page';
   static const all = <String>{
     homePage,
     webviewPage,
+    bookmarkOverviewPage,
   };
 }
 
@@ -26,6 +30,7 @@ class BookmarkRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.webviewPage, page: WebviewPage),
+    RouteDef(Routes.bookmarkOverviewPage, page: BookmarkOverviewPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -42,6 +47,18 @@ class BookmarkRouter extends RouterBase {
         builder: (context) => WebviewPage(
           key: args.key,
           url: args.url,
+        ),
+        settings: data,
+      );
+    },
+    BookmarkOverviewPage: (data) {
+      final args = data.getArgs<BookmarkOverviewPageArguments>(
+        orElse: () => BookmarkOverviewPageArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => BookmarkOverviewPage(
+          key: args.key,
+          bookmarks: args.bookmarks,
         ),
         settings: data,
       );
@@ -64,6 +81,16 @@ extension BookmarkRouterExtendedNavigatorStateX on ExtendedNavigatorState {
         Routes.webviewPage,
         arguments: WebviewPageArguments(key: key, url: url),
       );
+
+  Future<dynamic> pushBookmarkOverviewPage({
+    Key key,
+    List<Bookmark> bookmarks,
+  }) =>
+      push<dynamic>(
+        Routes.bookmarkOverviewPage,
+        arguments:
+            BookmarkOverviewPageArguments(key: key, bookmarks: bookmarks),
+      );
 }
 
 /// ************************************************************************
@@ -75,4 +102,11 @@ class WebviewPageArguments {
   final Key key;
   final String url;
   WebviewPageArguments({this.key, @required this.url});
+}
+
+/// BookmarkOverviewPage arguments holder class
+class BookmarkOverviewPageArguments {
+  final Key key;
+  final List<Bookmark> bookmarks;
+  BookmarkOverviewPageArguments({this.key, this.bookmarks});
 }
