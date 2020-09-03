@@ -4,9 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:bookmark/domain/bookmark/bookmark.dart';
 import 'package:bookmark/domain/bookmark/bookmark_failure.dart';
 import 'package:bookmark/domain/bookmark/i_bookmark_repository.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
+
+import '../../domain/bookmark/bookmark_failure.dart';
 
 part 'bookmark_event.dart';
 part 'bookmark_state.dart';
@@ -24,24 +27,11 @@ class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
     yield* event.when(import: (_) async* {
       yield BookmarkState.loading();
 
-      Either<NoteFailure, Unit> failureOrSuccess;
+      Either<BookmarkFailure, KtList<Bookmark>> result =
+          await _bookmarkRepository.importBookmarks();
 
-        yield state.copyWith(
-          isSaving: true,
-          saveFailureOrSuccessOption: none(),
-        );
-
-        if (state.note.failureOption.isNone()) {
-          failureOrSuccess = state.isEditing
-              ? await _noteRepository.update(state.note)
-              :await _noteRepository.create(state.note);
-        }
-
-        yield state.copyWith(
-          isSaving: false,
-          showErrorMessages: true,
-          saveFailureOrSuccessOption: optionOf(failureOrSuccess),
-        );
+      yield result.fold((l) => BookmarkState.loadFailure(l),
+          (r) => BookmarkState.loadSuccess(r));
     });
   }
 }
