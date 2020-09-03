@@ -2,7 +2,7 @@
 
 A bookmark tool to manage all browsers' bookmarks.
 
-# entity、value_object、entity_to_data_transfer_object说明
+## entity、value_object、entity_to_data_transfer_object说明
 
 entity和value_object是在应用程序展示层presentation中直接使用的
 

@@ -19,17 +19,16 @@ class BookmarkRepository implements IBookmarkRepository {
     try {
       final document = parse(htmlContent2);
       var elements = document.getElementsByTagName("A");
-      inspect(elements.last);
-
       return right<BookmarkFailure, KtList<Bookmark>>(elements.map((e) {
         var map = e.attributes ?? {};
-        return BookmarkDto.fromJson(map
-              ..addAll({
-                "name": e.innerHtml,
-              }))
-            .toDomain();
+        map["name"] = e.innerHtml;
+        var result = map.map((key, value) => MapEntry("$key", value));
+        print("$result");
+        inspect(result);
+        return BookmarkDto.fromJson(result).toDomain();
       }).toImmutableList());
     } catch (e) {
+      print('错误:${e.runtimeType}');
       return left(BookmarkFailure.unexpected());
     }
   }

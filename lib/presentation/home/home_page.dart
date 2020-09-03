@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bookmark/presentation/route/bookmark_router.gr.dart';
-import 'package:bookmark/presentation/widget/base64_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,6 +16,10 @@ class HomePage extends StatelessWidget {
           child: Icon(Icons.import_contacts),
           onPressed: () => ExtendedNavigator.of(context).push(Routes.bookmarkOverviewPage),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.ac_unit),
+        onPressed: null,
       ),
     );
   }

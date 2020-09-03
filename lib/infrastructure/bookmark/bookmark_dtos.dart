@@ -51,7 +51,7 @@ abstract class BookmarkDto implements _$BookmarkDto {
       lastModified: lastModified,
       iconUri: iconUri,
       icon: icon?.replaceFirst(ICON_PREFIX, ""),
-      tags: tags?.split(","),
+      tags: tags?.split(",")??[],
       shortcutUrl: shortcutUrl,
       isFolder: isFolder,
       subBookmarks: subBookmarks?.map((e) => e.toDomain())?.toList(),
@@ -63,7 +63,11 @@ class TimestampConverter implements JsonConverter<DateTime, String> {
   const TimestampConverter();
   @override
   DateTime fromJson(String json) {
-    return DateTime.fromMicrosecondsSinceEpoch(int.tryParse(json) ?? 0)
+    if (json.isNullOrEmpty()) {
+      return null;
+    }
+
+    return DateTime.fromMicrosecondsSinceEpoch(int.tryParse(json ?? '0') ?? 0)
         .toLocal();
   }
 

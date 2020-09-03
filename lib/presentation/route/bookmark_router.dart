@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:bookmark/presentation/bookmark/bookmark_overview_page.dart';
-import 'package:bookmark/presentation/page/home_page.dart';
-import 'package:bookmark/presentation/page/webview_page.dart';
+import 'package:bookmark/presentation/home/home_page.dart';
+import 'package:bookmark/presentation/webview/webview_page.dart';
 
 @MaterialAutoRouter(
   preferRelativeImports: false,
