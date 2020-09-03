@@ -10,6 +10,7 @@ import 'package:injectable/injectable.dart';
 import 'application/bookmark/bookmark_bloc.dart';
 import 'infrastructure/bookmark/bookmark_repository.dart';
 import 'domain/bookmark/i_bookmark_repository.dart';
+import 'application/app_theme/theme_cubit.dart';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -21,6 +22,7 @@ GetIt $initGetIt(
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   gh.lazySingleton<IBookmarkRepository>(() => BookmarkRepository());
+  gh.factory<ThemeCubit>(() => ThemeCubit());
   gh.factory<BookmarkBloc>(() => BookmarkBloc(get<IBookmarkRepository>()));
   return get;
 }

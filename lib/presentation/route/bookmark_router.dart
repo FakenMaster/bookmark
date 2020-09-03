@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:bookmark/presentation/bookmark/bookmark_overview_page.dart';
+import 'package:bookmark/presentation/floating_macondo/floating_macondo_page.dart';
 import 'package:bookmark/presentation/home/home_page.dart';
 import 'package:bookmark/presentation/webview/webview_page.dart';
 
@@ -16,6 +17,9 @@ import 'package:bookmark/presentation/webview/webview_page.dart';
     ),
     MaterialRoute(
       page: BookmarkOverviewPage,
+    ),
+    MaterialRoute(
+      page: FloatingMacondoPage,
     ),
   ],
 )

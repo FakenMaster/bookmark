@@ -9,6 +9,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bookmark/domain/bookmark/bookmark.dart';
 import 'package:bookmark/presentation/bookmark/bookmark_overview_page.dart';
+import 'package:bookmark/presentation/floating_macondo/floating_macondo_page.dart';
 import 'package:bookmark/presentation/home/home_page.dart';
 import 'package:bookmark/presentation/webview/webview_page.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,12 @@ class Routes {
   static const String homePage = '/';
   static const String webviewPage = '/webview-page';
   static const String bookmarkOverviewPage = '/bookmark-overview-page';
+  static const String floatingMacondoPage = '/floating-macondo-page';
   static const all = <String>{
     homePage,
     webviewPage,
     bookmarkOverviewPage,
+    floatingMacondoPage,
   };
 }
 
@@ -31,6 +34,7 @@ class BookmarkRouter extends RouterBase {
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.webviewPage, page: WebviewPage),
     RouteDef(Routes.bookmarkOverviewPage, page: BookmarkOverviewPage),
+    RouteDef(Routes.floatingMacondoPage, page: FloatingMacondoPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -63,6 +67,12 @@ class BookmarkRouter extends RouterBase {
         settings: data,
       );
     },
+    FloatingMacondoPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => FloatingMacondoPage(),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -91,6 +101,9 @@ extension BookmarkRouterExtendedNavigatorStateX on ExtendedNavigatorState {
         arguments:
             BookmarkOverviewPageArguments(key: key, bookmarks: bookmarks),
       );
+
+  Future<dynamic> pushFloatingMacondoPage() =>
+      push<dynamic>(Routes.floatingMacondoPage);
 }
 
 /// ************************************************************************

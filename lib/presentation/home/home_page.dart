@@ -12,15 +12,21 @@ class HomePage extends StatelessWidget {
         title: const Text('Home'),
       ),
       body: Center(
-        child: RaisedButton(
-          child: Icon(Icons.import_contacts),
-          onPressed: () => ExtendedNavigator.of(context).push(Routes.bookmarkOverviewPage),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RaisedButton(
+              child: Icon(Icons.import_contacts),
+              onPressed: () => ExtendedNavigator.of(context).push(Routes.bookmarkOverviewPage),
+            ),
+            RaisedButton(
+              child: Icon(Icons.change_history),
+              onPressed: () => ExtendedNavigator.of(context).push(Routes.floatingMacondoPage),
+            ),
+          ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.ac_unit),
-        onPressed: null,
-      ),
+      
     );
   }
 }
