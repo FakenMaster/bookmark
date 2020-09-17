@@ -37,10 +37,10 @@ class _DayNightSwitchWidgetState extends State<DayNightSwitchWidget> {
   @override
   void initState() {
     super.initState();
+    animationController = DayNightSwitchController();
     currentAnimationState = context.bloc<ThemeCubit>().state.isDark
         ? AnimationStates.night_idle
         : AnimationStates.day_idle;
-    animationController = DayNightSwitchController();
   }
 
   @override

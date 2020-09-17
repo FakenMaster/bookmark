@@ -14,7 +14,8 @@ class _$BookmarkTearOff {
 
 // ignore: unused_element
   _Bookmark call(
-      {String name,
+      {String id,
+      String name,
       String href,
       DateTime addDate,
       DateTime lastModified,
@@ -25,6 +26,7 @@ class _$BookmarkTearOff {
       bool isFolder,
       List<Bookmark> subBookmarks}) {
     return _Bookmark(
+      id: id,
       name: name,
       href: href,
       addDate: addDate,
@@ -43,6 +45,7 @@ class _$BookmarkTearOff {
 const $Bookmark = _$BookmarkTearOff();
 
 mixin _$Bookmark {
+  String get id;
   String get name;
   String get href;
   DateTime get addDate;
@@ -61,7 +64,8 @@ abstract class $BookmarkCopyWith<$Res> {
   factory $BookmarkCopyWith(Bookmark value, $Res Function(Bookmark) then) =
       _$BookmarkCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String href,
       DateTime addDate,
       DateTime lastModified,
@@ -82,6 +86,7 @@ class _$BookmarkCopyWithImpl<$Res> implements $BookmarkCopyWith<$Res> {
 
   @override
   $Res call({
+    Object id = freezed,
     Object name = freezed,
     Object href = freezed,
     Object addDate = freezed,
@@ -94,6 +99,7 @@ class _$BookmarkCopyWithImpl<$Res> implements $BookmarkCopyWith<$Res> {
     Object subBookmarks = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       href: href == freezed ? _value.href : href as String,
       addDate: addDate == freezed ? _value.addDate : addDate as DateTime,
@@ -118,7 +124,8 @@ abstract class _$BookmarkCopyWith<$Res> implements $BookmarkCopyWith<$Res> {
       __$BookmarkCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String href,
       DateTime addDate,
       DateTime lastModified,
@@ -140,6 +147,7 @@ class __$BookmarkCopyWithImpl<$Res> extends _$BookmarkCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object id = freezed,
     Object name = freezed,
     Object href = freezed,
     Object addDate = freezed,
@@ -152,6 +160,7 @@ class __$BookmarkCopyWithImpl<$Res> extends _$BookmarkCopyWithImpl<$Res>
     Object subBookmarks = freezed,
   }) {
     return _then(_Bookmark(
+      id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       href: href == freezed ? _value.href : href as String,
       addDate: addDate == freezed ? _value.addDate : addDate as DateTime,
@@ -173,7 +182,8 @@ class __$BookmarkCopyWithImpl<$Res> extends _$BookmarkCopyWithImpl<$Res>
 
 class _$_Bookmark extends _Bookmark {
   const _$_Bookmark(
-      {this.name,
+      {this.id,
+      this.name,
       this.href,
       this.addDate,
       this.lastModified,
@@ -185,6 +195,8 @@ class _$_Bookmark extends _Bookmark {
       this.subBookmarks})
       : super._();
 
+  @override
+  final String id;
   @override
   final String name;
   @override
@@ -208,13 +220,15 @@ class _$_Bookmark extends _Bookmark {
 
   @override
   String toString() {
-    return 'Bookmark(name: $name, href: $href, addDate: $addDate, lastModified: $lastModified, iconUri: $iconUri, icon: $icon, tags: $tags, shortcutUrl: $shortcutUrl, isFolder: $isFolder, subBookmarks: $subBookmarks)';
+    return 'Bookmark(id: $id, name: $name, href: $href, addDate: $addDate, lastModified: $lastModified, iconUri: $iconUri, icon: $icon, tags: $tags, shortcutUrl: $shortcutUrl, isFolder: $isFolder, subBookmarks: $subBookmarks)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Bookmark &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.href, href) ||
@@ -246,6 +260,7 @@ class _$_Bookmark extends _Bookmark {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(href) ^
       const DeepCollectionEquality().hash(addDate) ^
@@ -265,7 +280,8 @@ class _$_Bookmark extends _Bookmark {
 abstract class _Bookmark extends Bookmark {
   const _Bookmark._() : super._();
   const factory _Bookmark(
-      {String name,
+      {String id,
+      String name,
       String href,
       DateTime addDate,
       DateTime lastModified,
@@ -276,6 +292,8 @@ abstract class _Bookmark extends Bookmark {
       bool isFolder,
       List<Bookmark> subBookmarks}) = _$_Bookmark;
 
+  @override
+  String get id;
   @override
   String get name;
   @override

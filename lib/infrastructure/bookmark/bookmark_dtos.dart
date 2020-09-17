@@ -1,6 +1,8 @@
 import 'package:bookmark/domain/bookmark/bookmark.dart';
+import 'package:bookmark/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bookmark/infrastructure/util/data_extension.dart';
+import 'package:uuid/uuid.dart';
 part 'bookmark_dtos.freezed.dart';
 part 'bookmark_dtos.g.dart';
 
@@ -45,6 +47,7 @@ abstract class BookmarkDto implements _$BookmarkDto {
 
   Bookmark toDomain() {
     return Bookmark(
+      id: getIt<Uuid>().v1(),
       name: name,
       href: href,
       addDate: addDate,

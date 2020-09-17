@@ -5,6 +5,7 @@ part 'bookmark.freezed.dart';
 abstract class Bookmark implements _$Bookmark {
   const Bookmark._();
   const factory Bookmark({
+    String id,
     String name,
     String href,
     DateTime addDate,
