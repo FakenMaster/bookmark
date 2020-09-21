@@ -17,10 +17,8 @@ class _$BookmarkDtoTearOff {
 
 // ignore: unused_element
   _BookmarkDto call(
-      {@required
-          String name,
-      @required
-          String href,
+      {String name,
+      String href,
       @JsonKey(name: 'add_date')
       @TimestampConverter()
           DateTime addDate,
@@ -216,8 +214,8 @@ class __$BookmarkDtoCopyWithImpl<$Res> extends _$BookmarkDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BookmarkDto extends _BookmarkDto {
   const _$_BookmarkDto(
-      {@required this.name,
-      @required this.href,
+      {this.name,
+      this.href,
       @JsonKey(name: 'add_date') @TimestampConverter() this.addDate,
       @JsonKey(name: 'last_modified') @TimestampConverter() this.lastModified,
       @JsonKey(name: 'icon_uri') this.iconUri,
@@ -226,9 +224,7 @@ class _$_BookmarkDto extends _BookmarkDto {
       @JsonKey(name: 'shortcuturl') this.shortcutUrl,
       @JsonKey(ignore: true) this.isFolder,
       @JsonKey(ignore: false) this.subBookmarks})
-      : assert(name != null),
-        assert(href != null),
-        super._();
+      : super._();
 
   factory _$_BookmarkDto.fromJson(Map<String, dynamic> json) =>
       _$_$_BookmarkDtoFromJson(json);
@@ -326,10 +322,8 @@ class _$_BookmarkDto extends _BookmarkDto {
 abstract class _BookmarkDto extends BookmarkDto {
   const _BookmarkDto._() : super._();
   const factory _BookmarkDto(
-      {@required
-          String name,
-      @required
-          String href,
+      {String name,
+      String href,
       @JsonKey(name: 'add_date')
       @TimestampConverter()
           DateTime addDate,

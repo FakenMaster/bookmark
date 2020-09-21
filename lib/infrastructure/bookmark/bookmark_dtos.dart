@@ -13,8 +13,8 @@ abstract class BookmarkDto implements _$BookmarkDto {
   const BookmarkDto._();
 
   const factory BookmarkDto({
-    @required String name,
-    @required String href,
+    String name,
+    String href,
     @JsonKey(name: "add_date") @TimestampConverter() DateTime addDate,
     @JsonKey(name: "last_modified") @TimestampConverter() DateTime lastModified,
     @JsonKey(name: "icon_uri") String iconUri,
@@ -54,7 +54,7 @@ abstract class BookmarkDto implements _$BookmarkDto {
       lastModified: lastModified,
       iconUri: iconUri,
       icon: icon?.replaceFirst(ICON_PREFIX, ""),
-      tags: tags?.split(",")??[],
+      tags: tags?.split(",") ?? [],
       shortcutUrl: shortcutUrl,
       isFolder: isFolder,
       subBookmarks: subBookmarks?.map((e) => e.toDomain())?.toList(),

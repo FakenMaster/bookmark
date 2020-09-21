@@ -17,4 +17,6 @@ abstract class Bookmark implements _$Bookmark {
     bool isFolder,
     List<Bookmark> subBookmarks,
   }) = _Bookmark;
+
+  bool get isFolder => subBookmarks != null;
 }

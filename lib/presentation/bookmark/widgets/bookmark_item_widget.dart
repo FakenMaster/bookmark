@@ -5,35 +5,43 @@ import 'package:flutter/material.dart';
 
 class BookmarkItemWidget extends StatelessWidget {
   final Bookmark bookmark;
-
-  const BookmarkItemWidget({Key key, this.bookmark}) : super(key: key);
+  final bool topBookmark;
+  const BookmarkItemWidget({Key key, this.bookmark, this.topBookmark = true})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      leading: Base64ImageWidget(
-        dataSource: bookmark.icon,
-      ),
-      title: Text(bookmark.name),
-      // subtitle: Text(bookmark.href),
-      expandedCrossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ListTile(
-          onTap: () {
-            bookmark.href.navigate2WebviewOrLaunchUrl(context);
-          },
-          leading: Text(''),
-          title: Text(bookmark.href),
-          subtitle: Wrap(
-            spacing: 8.0,
-            children: bookmark.tags
-                .map((e) => ActionChip(
-                      label: Text(e),
-                      onPressed: () {},
-                    ))
-                .toList(),
-          ),
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(left: topBookmark ? 0 : 8),
+      child: bookmark.subBookmarks != null
+          ? ExpansionTile(
+              leading: Icon(Icons.folder),
+              title: Text(bookmark.name),
+              children: bookmark.subBookmarks
+                  .map((e) => BookmarkItemWidget(
+                        bookmark: e,
+                        topBookmark: false,
+                      ))
+                  .toList(),
+            )
+          : ListTile(
+              leading: Base64ImageWidget(
+                dataSource: bookmark.icon,
+              ),
+              title: Text(bookmark.name),
+              subtitle: Visibility(
+                visible: bookmark.tags.hasData,
+                child: Wrap(
+                  spacing: 8.0,
+                  children: bookmark.tags
+                      .map((e) => ActionChip(
+                            label: Text(e),
+                            onPressed: () {},
+                          ))
+                      .toList(),
+                ),
+              ),
+              onTap: () => bookmark.href?.navigate2WebviewOrLaunchUrl(context),
+            ),
     );
   }
 }

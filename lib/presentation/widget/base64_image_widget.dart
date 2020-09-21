@@ -17,9 +17,9 @@ class Base64ImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (dataSource == null) {
-      return Container(
-        width: width,
-        height: height,
+      return Icon(
+        Icons.public,
+        size: width,
       );
     }
     final data = dataSource.base64ToUint8List();
