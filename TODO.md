@@ -7,4 +7,4 @@
 
 #4 导出功能，在chrome上会丢失标签，怎么保存下来
 
-#5 快捷任务（Flare+Figma实现）
+#5 快捷人物（Flare+Figma实现）

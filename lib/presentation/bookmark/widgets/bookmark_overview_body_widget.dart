@@ -1,6 +1,5 @@
 import 'package:bookmark/application/bookmark/bookmark_bloc.dart';
 import 'package:bookmark/domain/bookmark/bookmark.dart';
-import 'package:bookmark/presentation/bookmark/widgets/bookmark_tree_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kt_dart/collection.dart';
@@ -90,6 +89,7 @@ class _BookmarkListWidgetState extends State<_BookmarkListWidget> {
         itemCount: bookmarks.length,
       ),
     );
+    // ignore: dead_code
     return ReorderableListView(
         children: List.generate(
           bookmarks.length,

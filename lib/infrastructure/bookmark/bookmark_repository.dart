@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:bookmark/domain/bookmark/bookmark_failure.dart';
 import 'package:bookmark/domain/bookmark/bookmark.dart';
